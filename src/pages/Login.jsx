@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import AuthContext from '../provider/AuthContext';
 import { useContext, useEffect } from 'react';
+import Signup from '../pages/Signup'
 const Login = () => {
     const navigate = useNavigate();
     const [credentials, setCredentials] = useState({
@@ -62,13 +63,21 @@ const Login = () => {
 
 
   return (
-    <div>
-      <form>
-        <input type="text" name='email' placeholder='Email...' onChange={handleChange}/>
-        <input type="text" name='password' placeholder='Password' onChange={handleChange}/>
-        <input type="submit" onClick={handleLogin} />
-      </form>
-    </div>
+    <main className='form'>
+          <div className='form-box'> 
+          <h1>LOGIN</h1>
+            <form className='inner-form' onSubmit={handleLogin}>
+              <div>
+                <input required type="email" name='email' placeholder='Email...' onChange={handleChange}/>
+              </div>
+              <div>
+                <input required type="text" name='password' placeholder='Password' onChange={handleChange}/>
+              </div>
+               <Link to={'/signup'}>new user?</Link>
+                <input type='submit' placeholder='submit'/>
+            </form>
+          </div>
+    </main>
   )
 }
 

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const reducer = (state, action) => {
+
     if(action.type === 'one')
     {
         if(state.rating!=1)
@@ -63,16 +64,54 @@ const reducer = (state, action) => {
 
 const Home = () => {
 
-    const navigate = useNavigate();
     const [allRatings, setAllRatings] = useState(null);
-    const [username, setUsername] = useState('not defined');
+    const [date, setDate] = useState('no date yet');
+    const [allReviews, setAllReviews] = useState(null);
+    const [reviews, setReviews] = useState({
+        text: ""
+    });
+
+    const handleChange =(e) => {
+         const {name, value } = e.target;
+         setReviews({...reviews, [name] : value})
+     }
+    
+    const navigate = useNavigate();
     const {user, isLoading, authenticated} = useContext(AuthContext);
-    const [date, setDate] = useState('');
-    const [avgRating, setAvgRating] = useState(0);
-    const [totalRating, setTotalRating] = useState(0);
 
     const [state, dispatch] = useReducer(reducer, {rating:0})
 
+    
+
+    const getTodayRating = async() => {
+
+        const ist = new Date();
+        let currentDay= String(ist.getDate()).padStart(2, '0');
+        let currentMonth = String(ist.getMonth()+1).padStart(2,"0");
+        let currentYear = ist.getFullYear();
+        let currentDate = `${currentDay}-${currentMonth}-${currentYear}`;
+        setDate(currentDate);
+        
+        try {
+            const response = await fetch(`http://localhost:5000/api/getRatings?date=${currentDate}`,
+        {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+
+        const json = await response.json(); 
+        setAllRatings(json);
+        console.log(json);
+        } catch (error) {
+            console.log(error);
+        }
+        // console.log(json);
+
+    }
+
+    
 
     useEffect(()=>{
         if(!isLoading)
@@ -84,15 +123,7 @@ const Home = () => {
             }
             else
             {
-                const ist = new Date();
-                let currentDay= String(ist.getDate()).padStart(2, '0');
-
-                let currentMonth = String(ist.getMonth()+1).padStart(2,"0");
-
-                let currentYear = ist.getFullYear();
-
-                let currentDate = `${currentDay}-${currentMonth}-${currentYear}`;
-                setDate(currentDate);
+                getTodayRating();
             }
         }
         
@@ -124,17 +155,60 @@ const Home = () => {
             if(!json.success)
             {
                 console.log(json);
-                console.log('unable to submit rating');
+                alert('unable to submit rating');
             }
             if(json.success)
             {
                 console.log(json);
-                console.log("rating submitted");
+                alert("rating submitted");
             }
         }
    }
+
+   const handleReviewSubmit = async(e) => {
+        e.preventDefault();
+        const meal = document.querySelector(".dropdown>span").getAttribute("value");
+        if(meal==='')
+        {
+            console.log('meal is null');
+            return;
+        }
+        try {
+            const response = await fetch('http://localhost:5000/api/submitReview', {
+                method: 'POST', 
+                headers: {
+                    "Content-Type": 'application/json'
+                }, 
+                body: JSON.stringify({
+                    reviewText: reviews.text, 
+                    meal: meal,
+                    date: date, 
+                    user: user.fullname, 
+                    userEmail: user.email, 
+                })
+            })
+            const json = await response.json();
+            if(!json.success)
+            {
+                console.log(json);
+                alert(json.msg);
+            }
+            if(json.success)
+            {
+                console.log(json);
+                alert(json.msg);
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+   }
+
+
+
+
   return (
-    <main>
+    <main className='home'>
         <h1>{!isLoading?(user?user.fullname:'no user'):''}</h1>
         <div className='chooseRate'>
             <h1>Choose Date and Meal to rate</h1>
@@ -166,6 +240,19 @@ const Home = () => {
             <h1>{state.rating}</h1>
         </div>
         <button onClick={submitRating}>submit rating</button>
+        <div className="review">
+            <form onSubmit={handleReviewSubmit} className='reviewform'>
+            <textarea required onChange={handleChange} value={reviews.text} name="text" id="" cols="30" rows="10" maxLength={200}/>
+            <button type='submit' required>Submit Review</button>
+            </form>
+        </div>
+        <div className="allR">
+            {allRatings?allRatings.map((ratings, index)=>{
+                return(
+                    <h1>{ratings.meal} {'=> average Rating: '} {ratings.avgRating} {' rated by'} {ratings.totalRating + " users"}</h1>
+                )
+            }):''}
+        </div>
     </main>
   )
 }
@@ -179,7 +266,6 @@ const Dropdown = () => {
                 document.querySelector(".dropdown>span").innerHTML = e.textContent;
                 const value = e.getAttribute("value");
                 document.querySelector(".dropdown>span").setAttribute("value", value);
-                // onChange(value);
             })
         })
     }, [])

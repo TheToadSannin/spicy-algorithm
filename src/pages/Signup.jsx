@@ -1,6 +1,6 @@
 import { body } from 'express-validator';
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, {  useState } from 'react'
+import {Link, useNavigate } from 'react-router-dom'
 
 
 const Signup = () => {
@@ -47,18 +47,24 @@ const Signup = () => {
 
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-        <input type="text" name='fullname' placeholder='Full Name' value={credentials.fullname} onChange={handleChange}/>
-        <input type="text" name='email' placeholder='Email' onChange={handleChange} value={credentials.email} />
-        <input type="text" name='password' placeholder='Password' onChange={handleChange} value={credentials.password} />
-        </div>
-        <button type='submit'>
-            Submit
-        </button>
-      </form>
-    </div>
+    <main className='form'>
+      <div className='form-box'>
+        <h1>SIGNUP</h1>
+        <form onSubmit={handleSubmit} className='inner-form'>
+            <div>
+                    <input type="text" name='fullname' placeholder='Full Name' value={credentials.fullname} onChange={handleChange}/>
+                </div>
+            <div>
+                <input type="text" name='email' placeholder='Email' onChange={handleChange} value={credentials.email} />
+            </div>
+            <div>
+                <input type="text" name='password' placeholder='Password' onChange={handleChange} value={credentials.password} />
+            </div>
+                <Link to={'/login'}>Already a user?</Link>
+                <input type='submit' placeholder='Submit'/>
+        </form>
+      </div>
+    </main>
   )
 }
 

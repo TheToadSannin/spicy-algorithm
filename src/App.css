@@ -1,41 +1,112 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.form{
+  background-size: cover;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5),
+  rgba(0, 0, 0, 0.5)),url('https://blog.sciencebee.com.bd/ufuchecm/2020/10/top-view-wooden-spoon-with-brown-sugar-black-background-with-copy-space_141793-9337.jpg');
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.form-box
+{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: 400px;
+  min-height: 450px;
   color: white;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid white;
+  box-shadow: 0 0 20px white;
 }
 
-.App-link {
-  color: #61dafb;
+.inner-form{
+  margin: 2em 0;
+  width: 100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.form-box h1{
+  margin-top: 1em;
+  letter-spacing: 2px;
+  font-weight: 200;
+}
+
+.inner-form> div>  input{
+  padding: 10px;
+  width: 250px;
+  border-radius: 20px;
+  background: none;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 15px;
+
+}
+.inner-form> div>  input::placeholder{
+  color: white;
+  font-size: 15px;
+  font-weight: 100;
+  letter-spacing: 2px;
+}
+.inner-form >input{
+  margin-top: 20px;
+}
+
+.inner-form > div{
+  width: 65%;
+  margin:1.5em 0;
+  border-bottom: 1px solid white;
+}
+
+.inner-form>input {
+  padding: 10px;
+  width: 100px;
+  border-radius: 20px;
+  border: none;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  transition: ease-in-out 0.1s;
+}
+.inner-form > input:hover{
+  transform: scale(1.1);
+  box-shadow: 0 0 10px white;
+  cursor: pointer;
+}
+.inner-form a{
+  align-self: flex-end;
+  margin-right: 17.5%;
+  color: white;
+  font-size: small;
+  text-decoration: none;
+}
+.inner-form a:hover{
+  text-decoration: underline;
+}
+
+@media (max-width: 400px) {
+  .inner-form > div{
+    width: 80%;
   }
 }
+
 
 .mealDropdown{
   background-color: goldenrod;
@@ -111,4 +182,13 @@ input[type="date"]{
 .stars button{
   padding: 1em;
   font-size: 30px;
+}
+
+.home{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
