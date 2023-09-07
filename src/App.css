@@ -1,8 +1,13 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Raleway:wght@200&display=swap');
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
 }
+
+
 
 .form{
   background-size: cover;
@@ -45,7 +50,6 @@
 .form-box h1{
   margin-top: 1em;
   letter-spacing: 2px;
-  font-weight: 200;
 }
 
 .inner-form> div>  input{
@@ -121,14 +125,16 @@
 }
 
 .dropdown {
-  width: 400px;
+  font-size: 20px;
+  width: 300px;
   color: white;
   filter: drop-shadow(0 0 10px rgba(11, 11, 11, 0.5));
   position: relative;
   padding: 10px 40px;
-  background-color: #0080ff;
+  background-color: #9a9a00;
   border-radius: 10px;
   text-align: center;
+  transition: ease 0.2s;
 }
 
 .dropdown .dropdown-content {
@@ -139,56 +145,139 @@
   width: 100%;
   left: 0;
   top: 70%;
-  background-color: #0080ff;
+  background-color: #9b9b00;
   border-radius: 10px;
+  transition: ease 0.2s;
   margin-top: 12px;
 }
 
 .dropdown .dropdown-content span {
+  
   padding: 10px;
   transition: background-color ease 0.3s;
 }
 
 .dropdown:hover .dropdown-content {
   display: flex;
+
 }
 
 .dropdown-content span:hover {
-  background-color: #0053a5;
+  background-color: #cfcf00;
   border-radius: 10px;
   cursor: pointer;
 }
 
-input[type="date"]{
-  background-color: #0080ff;
-  padding: 15px;
-  font-family: "Roboto Mono",monospace;
-  color: #ffffff;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-}
-::-webkit-calendar-picker-indicator{
-  background-color: #ffffff;
-  padding: 5px;
-  cursor: pointer;
-  border-radius: 3px;
-}
-
 .stars{
-  margin: 2em 2em;
+  margin: 2em 0em;
 }
 .stars button{
   padding: 1em;
   font-size: 30px;
 }
+.stars button:hover{
+  background-color: yellow;
+}
 
 .home{
-  width: 100vw;
   height: 100vh;
+  color: white;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: rgb(34, 34, 34);
+}
+
+.home .home-inner{
+  /* border: 1px solid white; */
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: cneter;
+}
+
+.home .home-inner>h1{
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  margin: 2em 0;
+  letter-spacing: 2px;
+}
+.star-rating {
+  margin: 2em 0;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
+.star-rating input { 
+  display: none;
+}
+.star-rating label{
+  font-size: 40px;
+  columns: #444;
+  padding: 10px;
+  transition: all 0.2s ease;
+}
+
+input:not(:checked) ~ label:hover, 
+input:not(:checked) ~ label:hover ~ label{
+  color: yellow;
+}
+input:checked ~ label{
+  color: yellow;
+}
+.chooseRate{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chooseRate > h4{
+  text-align: center;
+  margin: 1em 0;
+}
+.dropdownMenu{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.formform{
+  transition: all ease 0.2s;
+  width: 100%;
+  justify-items: center;
+}
+.formform textarea{
+  background-color: rgb(23, 23, 23);
+  transition: all ease 0.2s;
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: larger;
+  padding: 10px;
+}
+.formform textarea::placeholder{
+  color: whitesmoke;
+}
+
+.ratingSubmit{
+  padding: 10px;
+  margin: 1em 0;
+  background-color: rgb(16, 0, 107);
+  border: none;
+  color: white;
+  font-size: 18px;
+  border-radius: 20px;
+  transition: 0.1s ease;
+}
+.ratingSubmit:hover{
+  box-shadow: 0 0 10px white;
+  transform: scale(1.05);
+
 }

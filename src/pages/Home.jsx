@@ -1,66 +1,6 @@
-import React, { useContext, useEffect, useReducer, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import AuthContext from '../provider/AuthContext'
 import { useNavigate } from 'react-router-dom';
-
-
-const reducer = (state, action) => {
-
-    if(action.type === 'one')
-    {
-        if(state.rating!=1)
-        {
-            return {
-                rating: 1
-            }
-        }
-        else return {rating:0};
-    }
-    else if(action.type === 'two')
-    {
-        if(state.rating!=2)
-        {
-            return {
-                rating: 2
-            }
-        }
-        else return {rating:0};
-    }
-    else if(action.type === 'three')
-    {
-        if(state.rating != 3)
-        {
-            return {
-                rating: 3
-            }
-        }
-        else return {rating:0};
-    }
-    else if(action.type === 'four')
-    {
-        if(state.rating != 4)
-        {
-            return {
-                rating: 4
-            }
-        }
-        else return {rating:0};
-    }
-    else if(action.type === 'five')
-    {
-        if(state.rating != 5)
-        {
-            return {
-                rating: 5
-            }
-        }
-        else return {rating:0};
-    }
-    else{
-        return {
-            rating : 0
-        }
-    }
-}
 
 const Home = () => {
 
@@ -79,7 +19,7 @@ const Home = () => {
     const navigate = useNavigate();
     const {user, isLoading, authenticated} = useContext(AuthContext);
 
-    const [state, dispatch] = useReducer(reducer, {rating:0})
+    const [rate, setRate] = useState(0);
 
     
 
@@ -146,7 +86,7 @@ const Home = () => {
                 },
                 body : JSON.stringify({
                     meal: meal, 
-                    userRating: state.rating,
+                    userRating: rate,
                     date: date,
                 })
             })
@@ -207,44 +147,51 @@ const Home = () => {
 
 
 
+
   return (
     <main className='home'>
-        <h1>{!isLoading?(user?user.fullname:'no user'):''}</h1>
+        <div className='home-inner'>
+            <h1>Welcome {!isLoading?(user?user.fullname:'no user'):''}</h1>
         <div className='chooseRate'>
-            <h1>Choose Date and Meal to rate</h1>
-            <div className="inputs">
-                {date}
+            <h4>Rate Today's Meal</h4>
+            <div className="dropdownMenu">
                 <Dropdown/>
             </div>
-            <div className="stars">
-                <button onClick={()=>{
-                    dispatch({type: 'one'})
-                }}>1</button>
-
-                <button onClick={()=>{
-                    dispatch({type: 'two'})
-                }}>2</button>
-
-                <button onClick={()=>{
-                    dispatch({type: 'three'})
-                }}>3</button>
-
-                <button onClick={()=>{
-                    dispatch({type: 'four'})
-                }}>4</button>
-
-                <button onClick={()=>{
-                    dispatch({type: 'five'})
-                }}>5</button>
+            <div className='star-rating'>
+                <input type="radio" name="rate" id="rate-5" onClick={()=>{
+                    setRate(5);
+                }}/>
+                <label htmlFor="rate-5" className='fas fa-star' ></label>
+                <input type="radio" name="rate" id="rate-4" />
+                <label htmlFor="rate-4" className='fas fa-star' onClick={()=>{
+                    setRate(4)
+                }}></label>
+                <input type="radio" name="rate" id="rate-3" />
+                <label htmlFor="rate-3" className='fas fa-star' onClick={()=>{
+                    setRate(3)
+                }}></label>
+                <input type="radio" name="rate" id="rate-2" />
+                <label htmlFor="rate-2" className='fas fa-star' onClick={()=>{
+                    setRate(2)
+                }}></label>
+                <input type="radio" name="rate" id="rate-1" />
+                <label htmlFor="rate-1" className='fas fa-star' onClick={()=>{
+                    setRate(1)
+                }}></label>
             </div>
-            <h1>{state.rating}</h1>
+            {rate?<form action='#' className='formform'>
+                <div className='text-area'>
+                    <textarea maxLength={200} placeholder='Describe your experience' name="" id="" cols="30" rows="5"></textarea>
+                </div>
+            </form>:''}
+            <button className='ratingSubmit' onClick={submitRating}>submit rating</button>
         </div>
-        <button onClick={submitRating}>submit rating</button>
+        
         <div className="review">
-            <form onSubmit={handleReviewSubmit} className='reviewform'>
-            <textarea required onChange={handleChange} value={reviews.text} name="text" id="" cols="30" rows="10" maxLength={200}/>
+            {/* <form onSubmit={handleReviewSubmit} className='reviewform'>
+            <textarea placeholder='Write us a review' required onChange={handleChange} value={reviews.text} name="text" id="" cols="30" rows="10" maxLength={200}/>
             <button type='submit' required>Submit Review</button>
-            </form>
+            </form> */}
         </div>
         <div className="allR">
             {allRatings?allRatings.map((ratings, index)=>{
@@ -252,6 +199,7 @@ const Home = () => {
                     <h1>{ratings.meal} {'=> average Rating: '} {ratings.avgRating} {' rated by'} {ratings.totalRating + " users"}</h1>
                 )
             }):''}
+        </div>
         </div>
     </main>
   )
