@@ -269,7 +269,7 @@ input:checked ~ label{
 .ratingSubmit{
   padding: 10px;
   margin: 1em 0;
-  background-color: rgb(16, 0, 107);
+  background-color: rgb(0, 103, 22);
   border: none;
   color: white;
   font-size: 18px;
