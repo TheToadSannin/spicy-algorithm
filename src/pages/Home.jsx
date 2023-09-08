@@ -150,11 +150,6 @@ const Home = () => {
         }
    }
 
-
-
-
-
-
   return (
     <main className='home'>
         <div className='home-inner'>
@@ -203,7 +198,7 @@ const Home = () => {
         <div className="allR">
             {allRatings?allRatings.map((ratings, index)=>{
                 return(
-                    <h1>{ratings.meal} {'=> average Rating: '} {ratings.avgRating} {' rated by'} {ratings.totalRating + " users"}</h1>
+                    <h1>{ratings.meal} {'=> average Rating: '} {ratings.avgRating.toFixed(1)} {' rated by'} {ratings.totalRating + " users"}</h1>
                 )
             }):''}
         </div>
