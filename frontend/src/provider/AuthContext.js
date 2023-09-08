@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const getUserData = async () => {
-      const response = await fetch("http://localhost:5000/api/isAuth", {
+      const response = await fetch("https://spicy-algorithm.onrender.com/api/isAuth", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

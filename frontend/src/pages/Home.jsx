@@ -70,7 +70,7 @@ const Home = () => {
         setDate(currentDate);
         
         try {
-            const response = fetch(`http://localhost:5000/api/getRatings?date=${currentDate}`,
+            const response = fetch(`https://spicy-algorithm.onrender.com/api/getRatings?date=${currentDate}`,
         {
             method: 'GET',
             headers: {
@@ -98,7 +98,7 @@ const Home = () => {
              return;
          }
          try {
-             const response = await fetch('http://localhost:5000/api/submitReview', {
+             const response = await fetch('https://spicy-algorithm.onrender.com/api/submitReview', {
                  method: 'POST', 
                  headers: {
                      "Content-Type": 'application/json'
@@ -144,7 +144,7 @@ const Home = () => {
         }
         else
         {
-            const response = await fetch('http://localhost:5000/api/submitRating', {
+            const response = await fetch('https://spicy-algorithm.onrender.com/api/submitRating', {
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json'

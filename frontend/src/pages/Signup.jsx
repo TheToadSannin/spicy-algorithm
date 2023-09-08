@@ -19,7 +19,7 @@ const Signup = () => {
     const handleSubmit = async(e) => {   
         e.preventDefault();
         
-        const reponse = await fetch('http://localhost:5000/api/createUser', {
+        const reponse = await fetch('https://spicy-algorithm.onrender.com/api/createUser', {
             method:"POST", 
             headers:{
                 "Content-Type": "application/json"
