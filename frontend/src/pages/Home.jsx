@@ -22,33 +22,33 @@ const Home = () => {
 
     
 
-    const getTodayRating = async() => {
+    // const getTodayRating = async() => {
 
-        const ist = new Date();
-        let currentDay= String(ist.getDate()).padStart(2, '0');
-        let currentMonth = String(ist.getMonth()+1).padStart(2,"0");
-        let currentYear = ist.getFullYear();
-        let currentDate = `${currentDay}-${currentMonth}-${currentYear}`;
-        setDate(currentDate);
+    //     const ist = new Date();
+    //     let currentDay= String(ist.getDate()).padStart(2, '0');
+    //     let currentMonth = String(ist.getMonth()+1).padStart(2,"0");
+    //     let currentYear = ist.getFullYear();
+    //     let currentDate = `${currentDay}-${currentMonth}-${currentYear}`;
+    //     setDate(currentDate);
         
-        try {
-            const response = await fetch(`http://localhost:5000/api/getRatings?date=${currentDate}`,
-        {
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
+    //     try {
+    //         const response = await fetch(`http://localhost:5000/api/getRatings?date=${currentDate}`,
+    //     {
+    //         method: 'GET',
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //     })
 
-        const json = await response.json(); 
-        setAllRatings(json);
-        console.log(json);
-        } catch (error) {
-            console.log(error);
-        }
-        // console.log(json);
+    //     const json = await response.json(); 
+    //     setAllRatings(json);
+    //     console.log(json);
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    //     // console.log(json);
 
-    }
+    // }
 
     
 
