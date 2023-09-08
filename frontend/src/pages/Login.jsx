@@ -30,7 +30,7 @@ const Login = () => {
           navigate(`/`);
         }
       }
-    }, [isLoading, authenticated, navigte]);
+    }, [isLoading, authenticated, navigate]);
 
     const handleLogin =async (e) => {
       e.preventDefault();
