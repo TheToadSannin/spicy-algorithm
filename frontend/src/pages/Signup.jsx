@@ -1,4 +1,3 @@
-import { body } from 'express-validator';
 import React, {  useState } from 'react'
 import {Link, useNavigate } from 'react-router-dom'
 
@@ -11,7 +10,6 @@ const Signup = () => {
         email:"", 
         password:"", 
     })
-    const [errors, setErrors] = useState(null);
 
     const handleChange = (e)=>{
         const {name, value} = e.target;
@@ -37,7 +35,7 @@ const Signup = () => {
         console.log(json);
         if(!json.sucess)
         {
-            setErrors(json);
+            alert('something went wrong')
         }
         if(json.success){
             navigate('/login');

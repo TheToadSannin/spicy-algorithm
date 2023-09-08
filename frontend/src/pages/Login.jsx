@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import AuthContext from '../provider/AuthContext';
 import { useContext, useEffect } from 'react';
-import Signup from '../pages/Signup'
 const Login = () => {
 
     document.title = "Login";
