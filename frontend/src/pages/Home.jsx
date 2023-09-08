@@ -87,7 +87,7 @@ const Home = () => {
             }
         }
         
-    } , [isLoading, authenticated])
+    } , [isLoading, authenticated, navigate])
 
     
     const handleReviewSubmit = async() => {
