@@ -4,6 +4,9 @@ import AuthContext from '../provider/AuthContext';
 import { useContext, useEffect } from 'react';
 import Signup from '../pages/Signup'
 const Login = () => {
+
+    document.title = "Login";
+
     const navigate = useNavigate();
     const [credentials, setCredentials] = useState({
         email : "", 

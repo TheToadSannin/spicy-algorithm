@@ -269,3 +269,16 @@ input:checked ~ label{
   transform: scale(1.05);
 
 }
+
+.log-out{
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: rgb(149, 0, 0);
+  margin: 1em 0;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  width: 130px;
+  align-self: center;
+}

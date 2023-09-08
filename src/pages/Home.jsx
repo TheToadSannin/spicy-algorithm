@@ -6,7 +6,6 @@ const Home = () => {
 
     const [allRatings, setAllRatings] = useState(null);
     const [date, setDate] = useState('no date yet');
-    const [allReviews, setAllReviews] = useState(null);
     const [reviews, setReviews] = useState({
         text: ""
     });
@@ -17,7 +16,7 @@ const Home = () => {
      }
     
     const navigate = useNavigate();
-    const {user, isLoading, authenticated} = useContext(AuthContext);
+    const {user, isLoading, authenticated, setAuthenticated} = useContext(AuthContext);
 
     const [rate, setRate] = useState(0);
 
@@ -149,6 +148,11 @@ const Home = () => {
             }
         }
    }
+   const handleLogout = () => {
+    localStorage.clear();
+    setAuthenticated(false);
+    navigate("/login");
+  };
 
   return (
     <main className='home'>
@@ -188,13 +192,6 @@ const Home = () => {
             </form>:''}
             <button className='ratingSubmit' onClick={submitRating}>submit rating</button>
         </div>
-        
-        <div className="review">
-            {/* <form onSubmit={handleReviewSubmit} className='reviewform'>
-            <textarea placeholder='Write us a review' required onChange={handleChange} value={reviews.text} name="text" id="" cols="30" rows="10" maxLength={200}/>
-            <button type='submit' required>Submit Review</button>
-            </form> */}
-        </div>
         <div className="allR">
             {allRatings?allRatings.map((ratings, index)=>{
                 return(
@@ -202,6 +199,7 @@ const Home = () => {
                 )
             }):''}
         </div>
+        <button className="log-out" onClick={handleLogout}>LOGOUT</button>
         </div>
     </main>
   )
