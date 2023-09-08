@@ -53,7 +53,7 @@ const Login = () => {
       
       if(!json.success)
       {
-        console.log('invalid user');
+        alert('invalid user');
       }
       if(json.success){
         setUser(json.user);

@@ -211,8 +211,8 @@ body{
   transition: all 0.2s ease;
 }
 
-input:not(:checked) ~ label:hover, 
-input:not(:checked) ~ label:hover ~ label{
+.star-rating input:not(:checked) ~ label:hover, 
+.star-rating input:not(:checked) ~ label:hover ~ label{
   color: yellow;
 }
 input:checked ~ label{
@@ -286,4 +286,20 @@ input:checked ~ label{
 .log-out:hover{
   transform: scale(1.05);
   box-shadow:  0 0 5px white;
+}
+
+.avg-rating {
+  margin: 2em 0;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
+.avg-rating input { 
+  display: none;
+}
+.avg-rating label{
+  font-size: 40px;
+  columns: #444;
+  transition: all 0.2s ease;
 }

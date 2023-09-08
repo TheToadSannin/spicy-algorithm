@@ -1,6 +1,6 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://gauxrav:14aca70dc47e69g@cluster-feedback.hhpzfks.mongodb.net/mess-feedback";
+const uri = process.env.MONGO_URL;
 
 const mongoDB = async()=>await mongoose.connect(uri)
     .then(()=>{

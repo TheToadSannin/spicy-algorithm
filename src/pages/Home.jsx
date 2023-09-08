@@ -231,13 +231,6 @@ const Dropdown = () => {
     )
 }
 
-const ShowRating = () =>{
 
-
-    return <>
-    <div>hello i'm rating</div>
-    </>
-
-}
 
 export default Home;
