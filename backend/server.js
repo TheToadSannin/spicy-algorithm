@@ -13,6 +13,6 @@ app.use('/api', require('./routes/loginUser.js'));
 app.use('/api', require('./routes/rating.js'));
 app.use('/api', require('./routes/review.js'));
 
-app.listen(PORT, ()=>{
+app.listen(port, ()=>{
     console.log('listening on 5000');
 })
