@@ -281,4 +281,9 @@ input:checked ~ label{
   border-radius: 20px;
   width: 130px;
   align-self: center;
+  transition: 0.1s ease;
+}
+.log-out:hover{
+  transform: scale(1.05);
+  box-shadow:  0 0 5px white;
 }
