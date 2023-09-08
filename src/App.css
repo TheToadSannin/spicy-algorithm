@@ -5,8 +5,11 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Raleway', sans-serif;
+  
 }
-
+body{
+  background: rgb(34, 34, 34);
+}
 
 
 .form{
@@ -106,22 +109,9 @@
 }
 
 @media (max-width: 400px) {
-  .inner-form > div{
+  /* .inner-form > div{
     width: 80%;
-  }
-}
-
-
-.mealDropdown{
-  background-color: goldenrod;
-  width: 300px;
-  position: relative;
-}
-.mealDropdown .meals{
-  display: none;
-  position: absolute;
-  background-color: black;
-  color: white;
+  } */
 }
 
 .dropdown {
@@ -187,7 +177,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgb(34, 34, 34);
 }
 
 .home .home-inner{
@@ -219,7 +208,6 @@
 .star-rating label{
   font-size: 40px;
   columns: #444;
-  padding: 10px;
   transition: all 0.2s ease;
 }
 

@@ -70,8 +70,53 @@ const Home = () => {
     } , [isLoading, authenticated])
 
     
+    const handleReviewSubmit = async() => {
+         const meal = document.querySelector(".dropdown>span").getAttribute("value");
+         if(meal==='')
+         {
+             console.log('meal is null');
+             return;
+         }
+         try {
+             const response = await fetch('http://localhost:5000/api/submitReview', {
+                 method: 'POST', 
+                 headers: {
+                     "Content-Type": 'application/json'
+                 }, 
+                 body: JSON.stringify({
+                     reviewText: reviews.text, 
+                     meal: meal,
+                     date: date, 
+                     user: user.fullname, 
+                     userEmail: user.email, 
+                 })
+             })
+             const json = await response.json();
+             if(!json.success)
+             {
+                 console.log(json);
+                 alert(json.msg);
+             }
+             if(json.success)
+             {
+                 console.log(json);
+                 alert(json.msg);
+             }
+ 
+         } catch (error) {
+             console.log(error);
+         }
+    }
+
+
    const submitRating = async(e) => {
         e.preventDefault();
+
+        if(reviews.text.length > 0)
+        {
+            handleReviewSubmit();
+        }
+
         const meal = document.querySelector(".dropdown>span").getAttribute("value");
         if(meal==='')
         {
@@ -105,44 +150,6 @@ const Home = () => {
         }
    }
 
-   const handleReviewSubmit = async(e) => {
-        e.preventDefault();
-        const meal = document.querySelector(".dropdown>span").getAttribute("value");
-        if(meal==='')
-        {
-            console.log('meal is null');
-            return;
-        }
-        try {
-            const response = await fetch('http://localhost:5000/api/submitReview', {
-                method: 'POST', 
-                headers: {
-                    "Content-Type": 'application/json'
-                }, 
-                body: JSON.stringify({
-                    reviewText: reviews.text, 
-                    meal: meal,
-                    date: date, 
-                    user: user.fullname, 
-                    userEmail: user.email, 
-                })
-            })
-            const json = await response.json();
-            if(!json.success)
-            {
-                console.log(json);
-                alert(json.msg);
-            }
-            if(json.success)
-            {
-                console.log(json);
-                alert(json.msg);
-            }
-
-        } catch (error) {
-            console.log(error);
-        }
-   }
 
 
 
@@ -181,7 +188,7 @@ const Home = () => {
             </div>
             {rate?<form action='#' className='formform'>
                 <div className='text-area'>
-                    <textarea maxLength={200} placeholder='Describe your experience' name="" id="" cols="30" rows="5"></textarea>
+                    <textarea maxLength={200} value={reviews.text} onChange={handleChange} placeholder='Describe your experience' name="text" id="" cols="30" rows="5"></textarea>
                 </div>
             </form>:''}
             <button className='ratingSubmit' onClick={submitRating}>submit rating</button>
