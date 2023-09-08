@@ -70,7 +70,7 @@ const Home = () => {
         setDate(currentDate);
         
         try {
-            const response = await fetch(`http://localhost:5000/api/getRatings?date=${currentDate}`,
+            const response = fetch(`http://localhost:5000/api/getRatings?date=${currentDate}`,
         {
             method: 'GET',
             headers: {
@@ -78,7 +78,7 @@ const Home = () => {
             },
         })
 
-        const json = await response.json(); 
+        const json = response.json(); 
         setAllRatings(json);
         console.log(json);
         } catch (error) {
