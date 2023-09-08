@@ -13,7 +13,6 @@ const Login = () => {
     })
 
     const {
-      user,
       setUser,
       isLoading,
       authenticated,
@@ -31,7 +30,7 @@ const Login = () => {
           navigate(`/`);
         }
       }
-    }, [isLoading, authenticated]);
+    }, [isLoading, authenticated, navigte]);
 
     const handleLogin =async (e) => {
       e.preventDefault();
