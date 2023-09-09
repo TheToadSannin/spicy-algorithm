@@ -3,9 +3,8 @@ import AuthContext from '../provider/AuthContext'
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-    
 
-    const strarr = ['asdf','asdf','asdf','asdf','sdf'];
+    document.title = 'Spicy-Algo'
 
     const [allRatings, setAllRatings] = useState(null);
     const [date, setDate] = useState('no date yet');

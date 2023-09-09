@@ -4,6 +4,8 @@ import {Link, useNavigate } from 'react-router-dom'
 
 const Signup = () => {
 
+    document.title = 'Signup'
+
     const navigate = useNavigate();
     const [credentials, setCredentials] = useState({
         fullname:"", 
