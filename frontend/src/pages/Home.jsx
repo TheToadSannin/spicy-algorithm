@@ -77,7 +77,7 @@ const Home = () => {
          const meal = document.querySelector(".dropdown>span").getAttribute("value");
          if(meal==='')
          {
-             console.log('meal is null');
+             alert('Rating and Meal cannot be empty');
              return;
          }
          try {
@@ -121,7 +121,7 @@ const Home = () => {
         }
 
         const meal = document.querySelector(".dropdown>span").getAttribute("value");
-        if(meal==='')
+        if(meal==='' && rate>0)
         {
             console.log('meal is null');
         }

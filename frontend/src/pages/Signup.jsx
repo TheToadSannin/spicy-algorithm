@@ -52,10 +52,10 @@ const Signup = () => {
                     <input type="text" name='fullname' placeholder='Full Name' value={credentials.fullname} onChange={handleChange}/>
                 </div>
             <div>
-                <input type="text" name='email' placeholder='Email' onChange={handleChange} value={credentials.email} />
+                <input type="email" name='email' placeholder='Email' onChange={handleChange} value={credentials.email} />
             </div>
             <div>
-                <input type="text" name='password' placeholder='Password' onChange={handleChange} value={credentials.password} />
+                <input type="password" name='password' placeholder='Password' onChange={handleChange} value={credentials.password} />
             </div>
                 <Link to={'/login'}>Already a user?</Link>
                 <input type='submit' placeholder='Submit'/>

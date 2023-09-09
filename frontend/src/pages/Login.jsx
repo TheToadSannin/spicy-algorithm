@@ -72,7 +72,7 @@ const Login = () => {
                 <input required type="email" name='email' placeholder='Email...' onChange={handleChange}/>
               </div>
               <div>
-                <input required type="text" name='password' placeholder='Password' onChange={handleChange}/>
+                <input required type="password" name='password' placeholder='Password' onChange={handleChange}/>
               </div>
                <Link to={'/signup'}>new user?</Link>
                 <input type='submit' placeholder='submit'/>
