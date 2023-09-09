@@ -3,6 +3,9 @@ import AuthContext from '../provider/AuthContext'
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+    
+
+    const strarr = ['asdf','asdf','asdf','asdf','sdf'];
 
     const [allRatings, setAllRatings] = useState(null);
     const [date, setDate] = useState('no date yet');
@@ -22,33 +25,33 @@ const Home = () => {
 
     
 
-    // const getTodayRating = async() => {
+    const getTodayRating = async() => {
 
-    //     const ist = new Date();
-    //     let currentDay= String(ist.getDate()).padStart(2, '0');
-    //     let currentMonth = String(ist.getMonth()+1).padStart(2,"0");
-    //     let currentYear = ist.getFullYear();
-    //     let currentDate = `${currentDay}-${currentMonth}-${currentYear}`;
-    //     setDate(currentDate);
+        const ist = new Date();
+        let currentDay= String(ist.getDate()).padStart(2, '0');
+        let currentMonth = String(ist.getMonth()+1).padStart(2,"0");
+        let currentYear = ist.getFullYear();
+        let currentDate = `${currentDay}-${currentMonth}-${currentYear}`;
+        setDate(currentDate);
         
-    //     try {
-    //         const response = await fetch(`http://localhost:5000/api/getRatings?date=${currentDate}`,
-    //     {
-    //         method: 'GET',
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //     })
+        try {
+            const response = await fetch(`https://spicy-algorithm.onrender.com/api/getRatings?date=${currentDate}`,
+        {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
 
-    //     const json = await response.json(); 
-    //     setAllRatings(json);
-    //     console.log(json);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    //     // console.log(json);
+        const json = await response.json(); 
+        setAllRatings(json);
+        console.log(json);
+        } catch (error) {
+            console.log(error);
+        }
+        // console.log(json);
 
-    // }
+    }
 
     
 
@@ -61,29 +64,9 @@ const Home = () => {
             }
             else
             {
-                // getTodayRating();
-                const ist = new Date();
-        let currentDay= String(ist.getDate()).padStart(2, '0');
-        let currentMonth = String(ist.getMonth()+1).padStart(2,"0");
-        let currentYear = ist.getFullYear();
-        let currentDate = `${currentDay}-${currentMonth}-${currentYear}`;
-        setDate(currentDate);
-        
-        try {
-            const response = fetch(`https://spicy-algorithm.onrender.com/api/getRatings?date=${currentDate}`,
-        {
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-
-        const json = response.json(); 
-        setAllRatings(json);
-        console.log(json);
-        } catch (error) {
-            console.log(error);
-        }
+                console.clear();
+                getTodayRating();
+                
             }
         }
         
@@ -216,15 +199,44 @@ const Home = () => {
         <div className="allR">
             {allRatings?allRatings.map((ratings, index)=>{
                 return(
-                    <h1>{ratings.meal} {'=> average Rating: '} {ratings.avgRating.toFixed(1)} {' rated by'} {ratings.totalRating + " users"}</h1>
+                    // <h1 key={index}>{ratings.meal} {'=> average Rating: '} {ratings.avgRating.toFixed(1)} {' rated by'} {ratings.totalRating + " users"}</h1>
+                    <PrintStars avg={ratings.avgRating} meal = {ratings.meal} users = {ratings.totalRating}/>
                 )
+                
             }):''}
+            
         </div>
         <button className="log-out" onClick={handleLogout}>LOGOUT</button>
+        
         </div>
+
     </main>
   )
 }
+
+const PrintStars = (props) => {
+    const avg = props.avg;
+    const meal = props.meal;
+    const users = props.users;
+    const stararr = [];
+    for(let i=1;i<=avg;i++)
+    {
+        stararr.push(<h1>⭐</h1>);
+    }
+
+    return(
+        <>
+            <div className='printStar'>
+                <h2>{meal}</h2>
+                <p>{stararr.map((st, key)=>{
+                return(" " + '⭐' +" ");
+                })}</p>
+                <h2>( {users} )</h2>
+            </div>
+        </>
+    )
+}
+
 
 const Dropdown = () => {
 
@@ -243,10 +255,10 @@ const Dropdown = () => {
         <div className="dropdown">
             <span value="">Select Meal</span>
             <div className="dropdown-content">
-                <span value="breakfast">Breakfast</span>
-                <span value="lunch">Lunch</span>
-                <span value="snacks">Snacks</span>
-                <span value="dinner">Dinner</span>
+                <span value="Breakfast">Breakfast</span>
+                <span value="Lunch">Lunch</span>
+                <span value="Snacks">Snacks</span>
+                <span value="Dinner">Dinner</span>
             </div>
         </div>
     )

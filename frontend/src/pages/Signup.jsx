@@ -32,8 +32,7 @@ const Signup = () => {
         });
 
         const json = await reponse.json();
-        console.log(json);
-        if(!json.sucess)
+        if(!json.success)
         {
             alert('something went wrong')
         }

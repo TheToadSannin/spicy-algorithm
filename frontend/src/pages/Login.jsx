@@ -35,7 +35,7 @@ const Login = () => {
     const handleLogin =async (e) => {
       e.preventDefault();
 
-      const response = await fetch ('https://spicy-algorithm.onrender.com//api/loginUser',
+      const response = await fetch ('https://spicy-algorithm.onrender.com/api/loginUser',
       {
         method: 'POST', 
         headers : {
