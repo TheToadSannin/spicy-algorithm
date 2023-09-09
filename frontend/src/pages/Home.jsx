@@ -230,7 +230,7 @@ const PrintStars = (props) => {
                 <p>{stararr.map((st, key)=>{
                 return(" " + '⭐' +" ");
                 })}</p>
-                <h2>( {users} )</h2>
+                <h2>Rated by {users} users </h2>
             </div>
         </>
     )
