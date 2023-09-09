@@ -199,7 +199,6 @@ const Home = () => {
         <div className="allR">
             {allRatings?allRatings.map((ratings, index)=>{
                 return(
-                    // <h1 key={index}>{ratings.meal} {'=> average Rating: '} {ratings.avgRating.toFixed(1)} {' rated by'} {ratings.totalRating + " users"}</h1>
                     <PrintStars avg={ratings.avgRating} meal = {ratings.meal} users = {ratings.totalRating}/>
                 )
                 
